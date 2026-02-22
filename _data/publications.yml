@@ -32,11 +32,12 @@
   year: 2022
   url: https://arxiv.org/abs/2205.15254
 
-# - title: "Beyond Homography: Nonparametric Image Alignment via Graph Convolutional Networks"
-#   authors: "Mijeong Kim, <strong>Sanghyeok Chu</strong>, and Bohyung Han"
-#   venue: MVA 2022
-#   year: 2022
-#   url: https://link.springer.com/article/10.1007/s00138-022-01331-9
+- title: "Beyond Homography: Nonparametric Image Alignment via Graph Convolutional Networks"
+  authors: "Mijeong Kim, <strong>Sanghyeok Chu</strong>, and Bohyung Han"
+  venue: MVA 2022
+  venue_class: top-tier
+  year: 2022
+  url: https://link.springer.com/article/10.1007/s00138-022-01331-9
 
 - title: "Learning Debiased and Disentangled Representations for Semantic Segmentation"
   authors: "<strong>Sanghyeok Chu</strong>, Dongwan Kim, and Bohyung Han"
