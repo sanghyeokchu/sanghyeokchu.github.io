@@ -16,10 +16,12 @@ layout: default
             advised by Prof. <a href="https://cv.snu.ac.kr/index.php/~bhhan/">Bohyung Han</a>.
             My research focuses on leveraging natural language to solve diverse vision tasks,
             with particular interests in advancing vision-language models, scalable architectures (MoE),
-            and streaming video understanding.
+            and streaming video understanding. 
+            <strong>I am currently seeking research internship opportunities for Summer/Fall 2026</strong>.
         </p>
         <div class="hero-links">
-            <a href="mailto:sanghyeok.chu@snu.ac.kr"><i class="fas fa-envelope"></i> Email</a>
+            <!-- <a href="https://scholar.google.com/citations?user=z-ZKiZUAAAAJ" target="_blank"><i class="fas fa-graduation-cap"></i> Scholar</a> -->
+            <a href="#" class="copy-email" data-email="sanghyeok.chu@snu.ac.kr" onclick="navigator.clipboard.writeText(this.dataset.email);this.querySelector('.email-label').textContent='Copied!';setTimeout(()=>this.querySelector('.email-label').textContent='Email',1500);return false;"><i class="fas fa-envelope"></i> <span class="email-label">Email</span></a>
             <a href="https://scholar.google.com/citations?user=z-ZKiZUAAAAJ" target="_blank"><i class="fas fa-graduation-cap"></i> Scholar</a>
             <!--<a href="https://github.com/" target="_blank"><i class="fab fa-github"></i> GitHub</a>-->
             <a href="https://www.linkedin.com/in/sanghyeok-chu-ab5aba33b/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
@@ -32,13 +34,15 @@ layout: default
 
     {% include news.html %}
 
+    {% include experience.html %}
+    
     {% include publications.html %}
 
     {% include awards.html %}
 
-    {% include experience.html %}
-
     {% include education.html %}
+
+    {% comment %}{% include services.html %}{% endcomment %}
 
     {% comment %}{% include teaching.html %}{% endcomment %}
 
