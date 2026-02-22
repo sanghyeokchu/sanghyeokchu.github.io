@@ -279,6 +279,8 @@ section {
 .pub-authors strong {
     color: var(--color-primary);
     font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 /* Entries (Experience, Education, etc.) */
