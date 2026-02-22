@@ -1,0 +1,20 @@
+<section id="experience">
+    <h2 class="section-title">Experience</h2>
+    {% for item in site.data.experience %}
+    <div class="entry">
+        <div class="entry-left">
+            <div class="entry-org">{{ item.org }}</div>
+            <div class="entry-role">{{ item.role }}</div>
+            {% if item.details %}
+            <ul class="entry-detail">
+                {% for d in item.details %}<li>{{ d }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div class="entry-right">
+            <div class="entry-period">{{ item.period }}</div>
+            {% if item.location %}<div class="entry-location">{{ item.location }}</div>{% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</section>

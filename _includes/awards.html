@@ -1,0 +1,9 @@
+<section id="awards">
+    <h2 class="section-title">Awards</h2>
+    {% for item in site.data.awards %}
+    <div class="award-item">
+        <div class="award-name">{{ item.name }}</div>
+        <div class="award-detail">{{ item.detail }}</div>
+    </div>
+    {% endfor %}
+</section>

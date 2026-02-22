@@ -1,0 +1,41 @@
+- title: "Pri4R: Learning World Dynamics for Vision-Language-Action Models with Privileged 4D Representation"
+  authors: "Jisoo Kim*, Jungbin Cho*, <strong>Sanghyeok Chu</strong>, Ananya Bal, Jinhyung Kim, Gunhee Lee, Sihaeng Lee, Seung Hwan Kim, Bohyung Han, Hyunmin Lee, Laszlo A. Jeni, Seungryong Kim"
+  venue: Under Review
+  venue_class: under-review
+  year: 2026
+
+- title: "Enhancing Mixture-of-Experts Specialization via Cluster-Aware Upcycling"
+  authors: "<strong>Sanghyeok Chu</strong>, Pyunghwan Ahn, Gwangmo Song, Seung Hwan Kim, Honglak Lee, and Bohyung Han"
+  venue: CVPR 2026
+  year: 2026
+  # url: https://arxiv.org/abs/XXXX
+
+- title: "Beyond the Ground Truth: Enhanced Supervision for Image Restoration"
+  authors: "Donghun Ryou*, Inju Ha*, <strong>Sanghyeok Chu</strong>, and Bohyung Han"
+  venue: CVPR 2026
+  year: 2026
+  # url: https://arxiv.org/abs/XXXX
+
+- title: "Fine-Grained Video Captioning through Scene Graph Consolidation"
+  authors: "<strong>Sanghyeok Chu</strong>, Seonguk Seo, and Bohyung Han"
+  venue: ICML 2025
+  year: 2025
+  # url: https://arxiv.org/abs/XXXX
+
+- title: "Beyond Homography: Nonparametric Image Alignment via Graph Convolutional Networks"
+  authors: "Mijeong Kim, <strong>Sanghyeok Chu</strong>, and Bohyung Han"
+  venue: MVA 2022
+  year: 2022
+  # url: https://doi.org/XXXX
+
+- title: "Pooling Revisited: Your Receptive Field is Suboptimal"
+  authors: "Donghwan Jang, <strong>Sanghyeok Chu</strong>, Joonhyuk Kim, and Bohyung Han"
+  venue: CVPR 2022
+  year: 2022
+  # url: https://arxiv.org/abs/XXXX
+
+- title: "Learning Debiased and Disentangled Representations for Semantic Segmentation"
+  authors: "<strong>Sanghyeok Chu</strong>, Dongwan Kim, and Bohyung Han"
+  venue: NeurIPS 2021
+  year: 2021
+  # url: https://arxiv.org/abs/XXXX

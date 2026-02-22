@@ -1,0 +1,12 @@
+- org: "LG AI Research, Vision Lab"
+  role: "Research Scientist Intern"
+  period: "2025.06 – 2026.05"
+  location: "Seoul, Korea"
+  details:
+    - "Research on integrating the Mixture-of-Experts architecture into vision encoders for next-generation foundation models (2025.06 – 2025.12)"
+    - "Research on VideoLLMs for Physical Agents (2026.01 – 2026.05)"
+
+- org: "Seoul National University"
+  role: "Research Assistant, Computer Vision Lab"
+  period: "2019.01 – Present"
+  location: "Seoul, Korea"

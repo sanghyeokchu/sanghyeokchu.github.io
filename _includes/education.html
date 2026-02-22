@@ -1,0 +1,16 @@
+<section id="education">
+    <h2 class="section-title">Education</h2>
+    {% for item in site.data.education %}
+    <div class="entry">
+        <div class="entry-left">
+            <div class="entry-org">{{ item.org }}</div>
+            <div class="entry-role">{{ item.role }}</div>
+            {% if item.detail %}<div class="entry-detail">{{ item.detail }}</div>{% endif %}
+        </div>
+        <div class="entry-right">
+            <div class="entry-period">{{ item.period }}</div>
+            {% if item.location %}<div class="entry-location">{{ item.location }}</div>{% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</section>

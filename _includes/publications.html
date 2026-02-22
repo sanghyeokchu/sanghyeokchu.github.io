@@ -1,0 +1,13 @@
+<section id="publications">
+    <h2 class="section-title">Publications</h2>
+    <p class="pub-note">(* denotes equal contribution)</p>
+    <ul class="pub-list">
+        {% for pub in site.data.publications %}
+        <li class="pub-item">
+            <span class="pub-venue {% if pub.venue_class %}{{ pub.venue_class }}{% endif %}">{{ pub.venue }}</span>
+            <div class="pub-title">{% if pub.url %}<a href="{{ pub.url }}" target="_blank">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}</div>
+            <div class="pub-authors">{{ pub.authors }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>

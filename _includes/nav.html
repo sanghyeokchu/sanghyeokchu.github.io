@@ -1,0 +1,15 @@
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="{{ '/' | relative_url }}" class="nav-name">Sanghyeok Chu</a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="{{ '/assets/pdf/cv.pdf' | relative_url }}" target="_blank">CV</a></li>
+        </ul>
+    </div>
+</nav>

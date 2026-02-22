@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<!-- Hero / About -->
+<header class="hero" id="about">
+    <div class="hero-photo">
+        <img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Sanghyeok Chu">
+    </div>
+    <div class="hero-text">
+        <h1>Sanghyeok Chu</h1>
+        <p class="subtitle">Ph.D. Candidate &middot; Seoul National University</p>
+        <p class="bio">
+            I am a Ph.D. candidate in Electrical Engineering and Computer Science at
+            <a href="https://cv.snu.ac.kr/">Seoul National University</a>,
+            advised by Prof. <a href="https://cv.snu.ac.kr/index.php/~bhhan/">Bohyung Han</a>.
+            My research focuses on leveraging natural language to solve diverse vision tasks,
+            with particular interests in advancing vision-language models, scalable architectures (MoE),
+            and streaming video understanding.
+        </p>
+        <div class="hero-links">
+            <a href="mailto:sanghyeok.chu@snu.ac.kr"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://scholar.google.com/citations?user=z-ZKiZUAAAAJ" target="_blank"><i class="fas fa-graduation-cap"></i> Scholar</a>
+            <!--<a href="https://github.com/" target="_blank"><i class="fab fa-github"></i> GitHub</a>-->
+            <a href="https://www.linkedin.com/in/sanghyeok-chu-ab5aba33b/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <!--<a href="{{ '/assets/pdf/cv.pdf' | relative_url }}" target="_blank"><i class="fas fa-file-alt"></i> CV</a>-->
+        </div>
+    </div>
+</header>
+
+<main>
+
+    {% include news.html %}
+
+    {% include publications.html %}
+
+    {% include awards.html %}
+
+    {% include experience.html %}
+
+    {% include education.html %}
+
+    <!--{% include teaching.html %}-->
+
+</main>
