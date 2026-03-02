@@ -1,47 +1,65 @@
 - title: "Pri4R: Learning World Dynamics for Vision-Language-Action Models with Privileged 4D Representation"
+  # authors_linked: "Jisoo Kim*, Jungbin Cho*, <strong>Sanghyeok Chu</strong>, Ananya Bal, Jinhyung Kim, Gunhee Lee, Sihaeng Lee, Seung Hwan Kim, <a href='https://cv.snu.ac.kr/index.php/~bhhan/' target='_blank'>Bohyung Han</a>, Hyunmin Lee, Laszlo A. Jeni, Seungryong Kim"
   authors: "Jisoo Kim*, Jungbin Cho*, <strong>Sanghyeok Chu</strong>, Ananya Bal, Jinhyung Kim, Gunhee Lee, Sihaeng Lee, Seung Hwan Kim, Bohyung Han, Hyunmin Lee, Laszlo A. Jeni, Seungryong Kim"
-  venue: Under Review
+  venue: "arXiv, 2026"
   venue_class: under-review
   year: 2026
 
 - title: "Enhancing Mixture-of-Experts Specialization via Cluster-Aware Upcycling"
+  # authors_linked: "<strong>Sanghyeok Chu</strong>, Pyunghwan Ahn, Gwangmo Song, Seung Hwan Kim, Honglak Lee, and <a href='https://cv.snu.ac.kr/index.php/~bhhan/' target='_blank'>Bohyung Han</a>"
   authors: "<strong>Sanghyeok Chu</strong>, Pyunghwan Ahn, Gwangmo Song, Seung Hwan Kim, Honglak Lee, and Bohyung Han"
   venue: CVPR 2026
   venue_class: top-tier
   year: 2026
-  # url: https://arxiv.org/abs/XXXX
+  pdf_url: "#"
+  project_url: "#"
+  code_url: "#"
 
 - title: "Beyond the Ground Truth: Enhanced Supervision for Image Restoration"
+  # authors_linked: "<a href='https://doinghun.com/' target='_blank'>Donghun Ryou</a>*, <a href='https://hij1112.github.io/' target='_blank'>Inju Ha</a>*, <strong>Sanghyeok Chu</strong>, and <a href='https://cv.snu.ac.kr/index.php/~bhhan/' target='_blank'>Bohyung Han</a>"
   authors: "Donghun Ryou*, Inju Ha*, <strong>Sanghyeok Chu</strong>, and Bohyung Han"
   venue: CVPR 2026
   venue_class: top-tier
   year: 2026
   url: https://arxiv.org/abs/2512.03932
+  project_url: https://hij1112.github.io/beyond-the-ground-truth/
+  code_url: https://github.com/dhryougit/Beyond-the-Ground-Truth
+  pdf_url: https://arxiv.org/abs/2512.03932
 
 - title: "Fine-Grained Video Captioning through Scene Graph Consolidation"
+  # authors_linked: "<strong>Sanghyeok Chu</strong>, <a href='https://seoseong.uk/' target='_blank'>Seonguk Seo</a>, and <a href='https://cv.snu.ac.kr/index.php/~bhhan/' target='_blank'>Bohyung Han</a>"
   authors: "<strong>Sanghyeok Chu</strong>, Seonguk Seo, and Bohyung Han"
   venue: ICML 2025
   venue_class: top-tier
   year: 2025
   url: https://arxiv.org/abs/2502.16427
+  pdf_url: https://arxiv.org/abs/2502.16427
+  code_url: "#"
 
 - title: "Pooling Revisited: Your Receptive Field is Suboptimal"
+  # authors_linked: "<a href='https://donghwanjang.github.io/' target='_blank'>Donghwan Jang</a>, <strong>Sanghyeok Chu</strong>, Joonhyuk Kim, and <a href='https://cv.snu.ac.kr/index.php/~bhhan/' target='_blank'>Bohyung Han</a>"
   authors: "Donghwan Jang, <strong>Sanghyeok Chu</strong>, Joonhyuk Kim, and Bohyung Han"
   venue: CVPR 2022
   venue_class: top-tier
   year: 2022
   url: https://arxiv.org/abs/2205.15254
+  pdf_url: https://arxiv.org/abs/2205.15254
 
 - title: "Beyond Homography: Nonparametric Image Alignment via Graph Convolutional Networks"
+  # authors_linked: "<a href='https://mjmjeong.github.io/' target='_blank'>Mijeong Kim</a>, <strong>Sanghyeok Chu</strong>, and <a href='https://cv.snu.ac.kr/index.php/~bhhan/' target='_blank'>Bohyung Han</a>"
   authors: "Mijeong Kim, <strong>Sanghyeok Chu</strong>, and Bohyung Han"
   venue: MVA 2022
   venue_class: top-tier
   year: 2022
   url: https://link.springer.com/article/10.1007/s00138-022-01331-9
+  pdf_url: https://link.springer.com/article/10.1007/s00138-022-01331-9
 
 - title: "Learning Debiased and Disentangled Representations for Semantic Segmentation"
+  # authors_linked: "<strong>Sanghyeok Chu</strong>, <a href='https://www.numpee.com/' target='_blank'>Dongwan Kim</a>, and <a href='https://cv.snu.ac.kr/index.php/~bhhan/' target='_blank'>Bohyung Han</a>"
   authors: "<strong>Sanghyeok Chu</strong>, Dongwan Kim, and Bohyung Han"
   venue: NeurIPS 2021
   venue_class: top-tier
   year: 2021
   url: https://arxiv.org/abs/2111.00531
+  code_url: https://github.com/sanghyeokchu/DropClass
+  pdf_url: https://arxiv.org/abs/2111.00531

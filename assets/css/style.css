@@ -258,6 +258,12 @@ section {
     line-height: 1.5;
 }
 
+.pub-title span {
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 2px;
+}
+
 .pub-title a {
     color: var(--color-text);
     text-decoration: underline;
@@ -276,11 +282,62 @@ section {
     line-height: 1.6;
 }
 
+.pub-authors a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 2px;
+}
+
+.pub-authors a:hover {
+    color: var(--color-accent);
+}
+
 .pub-authors strong {
     color: var(--color-primary);
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 2px;
+}
+
+.pub-links {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+
+.pub-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    background: var(--color-card);
+}
+
+.pub-links a:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: var(--color-tag-bg);
+}
+
+.pub-link-placeholder {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-border);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: default;
 }
 
 /* Entries (Experience, Education, etc.) */
