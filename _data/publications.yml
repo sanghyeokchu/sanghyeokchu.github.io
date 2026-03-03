@@ -4,6 +4,10 @@
   venue: "arXiv, 2026"
   venue_class: under-review
   year: 2026
+  url: https://arxiv.org/abs/2603.01549
+  project_url: https://jiiiisoo.github.io/Pri4R/
+  pdf_url: https://arxiv.org/abs/2603.01549
+
 
 - title: "Enhancing Mixture-of-Experts Specialization via Cluster-Aware Upcycling"
   # authors_linked: "<strong>Sanghyeok Chu</strong>, Pyunghwan Ahn, Gwangmo Song, Seung Hwan Kim, Honglak Lee, and <a href='https://cv.snu.ac.kr/index.php/~bhhan/' target='_blank'>Bohyung Han</a>"
