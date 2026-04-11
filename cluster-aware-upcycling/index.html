@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Enhancing Mixture-of-Experts Specialization via Cluster-Aware Upcycling">
+  <meta name="keywords" content="Mixture-of-Experts, MoE, Upcycling, CLIP, Vision Transformer">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cluster-Aware Upcycling</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <style>
+    body { font-family: 'Noto Sans', sans-serif; }
+    .publication-title { font-family: 'Google Sans', sans-serif; }
+    .publication-authors { font-family: 'Google Sans', sans-serif; }
+    .publication-authors a { color: hsl(204, 86%, 53%) !important; }
+    .publication-authors a:hover { text-decoration: underline; }
+    .author-block { display: inline-block; }
+    .author-row { display: block; margin-bottom: 2px; }
+    .teaser .hero-body { padding-top: 0; padding-bottom: 3rem; }
+    .teaser { font-family: 'Google Sans', sans-serif; }
+    .link-block a { margin-top: 5px; margin-bottom: 5px; }
+
+    .content h4 { margin-top: 1.2rem; margin-bottom: 0.4rem; }
+
+    /* Results tables */
+    .results-table {
+      width: 100%;
+      overflow-x: auto;
+      margin: 0 auto;
+    }
+    .results-table table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin: 0 auto;
+      border-top: 2px solid #363636;
+      border-bottom: 2px solid #363636;
+    }
+    .results-table table th {
+      border-bottom: 1px solid #999;
+      padding: 10px 8px;
+      text-align: center !important;
+      font-size: 0.8rem;
+      font-weight: 600;
+      vertical-align: bottom;
+    }
+    .results-table table td {
+      padding: 7px 8px;
+      text-align: center !important;
+      font-variant-numeric: tabular-nums;
+    }
+    .results-table table th:first-child,
+    .results-table table td:first-child {
+      text-align: left !important;
+      padding-left: 12px;
+    }
+    .results-table.center-first table th:first-child,
+    .results-table.center-first table td:first-child {
+      text-align: center !important;
+      padding-left: 8px;
+    }
+    .results-table tbody tr:hover {
+      background-color: #fafafa;
+    }
+    .results-table .best { font-weight: 700; }
+    .results-table .ours { background-color: #eef4ff; }
+    .results-table .ours:hover { background-color: #e4edff; }
+    .results-table .group-sep td {
+      background-color: #fafafa;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-bottom: 1px solid #dbdbdb;
+    }
+
+    /* Analysis grid */
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 80%;
+      margin: 1rem auto 0;
+    }
+    .analysis-grid img { width: 100%; border-radius: 4px; }
+    .analysis-item { text-align: center; }
+    .analysis-item p {
+      font-size: 0.85rem;
+      margin-top: 6px;
+      color: #4a4a4a;
+      line-height: 1.4;
+    }
+    @media screen and (max-width: 768px) {
+      .analysis-grid { grid-template-columns: 1fr; }
+    }
+
+    /* TL;DR callout */
+    .tldr-block {
+      max-width: 820px;
+      margin: 0 auto 1.5rem;
+      padding: 16px 22px;
+      background: #f5f7fb;
+      border-left: 4px solid hsl(204, 86%, 53%);
+      border-radius: 4px;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #363636;
+      text-align: left;
+    }
+    .tldr-block strong { color: hsl(204, 60%, 35%); }
+  </style>
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-1 publication-title">
+            Enhancing Mixture-of-Experts Specialization<br>via Cluster-Aware Upcycling
+          </h1>
+
+          <div class="is-size-3 publication-authors" style="margin-top:-15px;margin-bottom:10px;font-weight:bold;">
+            <span class="author-block">CVPR 2026</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-row">
+              <span class="author-block"><a href="https://sanghyeokchu.github.io/">Sanghyeok Chu</a><sup>*1,2</sup>,</span>
+              <span class="author-block">Pyunghwan Ahn<sup>&dagger;2</sup>,</span>
+              <span class="author-block">Gwangmo Song<sup>2</sup>,</span>
+              <span class="author-block">Seung Hwan Kim<sup>2</sup>,</span>
+            </span>
+            <span class="author-row">
+              <span class="author-block"><a href="https://web.eecs.umich.edu/~honglak/">Honglak Lee</a><sup>2,3</sup>,</span>
+              <span class="author-block"><a href="https://cv.snu.ac.kr/index.php/~bhhan/">Bohyung Han</a><sup>&dagger;1,4</sup></span>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors" style="margin-top:4px;">
+            <span class="author-block"><sup>1</sup>ECE &amp; <sup>4</sup>IPAI, Seoul National University&ensp;</span>
+            <span class="author-block"><sup>2</sup>LG AI Research&ensp;</span>
+            <span class="author-block"><sup>3</sup>University of Michigan</span>
+          </div>
+          <div class="is-size-6 publication-authors" style="margin-top:2px;">
+            <span class="author-block">* Work done during an internship at LG AI Research&ensp;&ensp;&dagger; Corresponding authors</span>
+          </div>
+
+          <!-- Links -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <span class="button is-normal is-rounded is-dark" style="opacity:0.55;cursor:not-allowed;" title="Coming soon">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                </span>
+              </span>
+              <span class="link-block">
+                <span class="button is-normal is-rounded is-dark" style="opacity:0.55;cursor:not-allowed;" title="Coming soon">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
+                </span>
+              </span>
+              <span class="link-block">
+                <span class="button is-normal is-rounded is-dark" style="opacity:0.55;cursor:not-allowed;" title="Coming soon">
+                  <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Teaser ===== -->
+<section class="hero teaser" style="margin-top:-20px;">
+  <div class="container is-max-widescreen">
+    <div class="tldr-block">
+      <strong>Key Idea:</strong> We leverage semantic structure in a pretrained dense model's activations to initialize both experts and the router in MoE upcycling, breaking expert symmetry and promoting early specialization.
+    </div>
+    <div class="has-text-centered">
+      <img src="assets/teaser-1.png" alt="Teaser figure" style="width:48%;height:auto;">
+    </div>
+  </div>
+</section>
+
+<!-- ===== Abstract ===== -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Sparse Upcycling provides an efficient way to initialize a Mixture-of-Experts (MoE) model from pretrained dense weights instead of training from scratch. However, since all experts start from identical weights and the router is randomly initialized, the model suffers from expert symmetry and limited early specialization. We propose <strong>Cluster-aware Upcycling</strong>, a strategy that incorporates semantic structure into MoE initialization. Our method first partitions the dense model's input activations into semantic clusters. Each expert is then initialized using the subspace representations of its corresponding cluster via truncated SVD, while setting the router's initial weights to the cluster centroids. This cluster-aware initialization breaks expert symmetry and encourages early specialization aligned with the data distribution. Furthermore, we introduce an expert-ensemble self-distillation loss that stabilizes training by providing reliable routing guidance using an ensemble teacher. When evaluated on CLIP ViT-B/32 and ViT-B/16, Cluster-aware Upcycling consistently outperforms existing methods across both zero-shot and few-shot benchmarks. The proposed method also produces more diverse and disentangled expert representations, reduces inter-expert similarity, and leads to more confident routing behavior.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Motivation (hidden — content overlaps with Abstract) ===== -->
+<!--
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Sparse Upcycling initializes a Mixture-of-Experts (MoE) model by copying pretrained dense weights to all experts.
+            While this preserves the dense model's functionality and enables a warm start, <strong>all experts begin as identical copies with a randomly initialized router</strong>, causing expert symmetry and limited early specialization.
+          </p>
+          <p>
+            Prior approaches attempted to break this symmetry through noise injection or partial reinitialization, but these either yield marginal gains or disrupt the pretrained representation space.
+            Other methods fine-tune experts on manually defined domains, but require explicit domain partitioning and additional training stages.
+            Our key insight is that <strong>the pretrained dense model's activations already contain rich semantic structure</strong> that can directly guide both expert and router initialization.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ===== Cluster-Aware Initialization ===== -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Cluster-Aware Initialization</h2>
+    <div class="has-text-centered" style="margin:1rem 0 1.5rem;">
+      <img src="assets/method-1.png" alt="Cluster-aware Upcycling initialization pipeline" style="width:67%;height:auto;">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>The initialization pipeline consists of three components:</p>
+          <h4>Step 1: Clustering Input Activations</h4>
+          <p>
+            Input activations from each FFN block are partitioned via spherical <em>k</em>-means clustering based on cosine similarity, which directly aligns with the router's logit computation.
+          </p>
+          <h4>Step 2: Cluster-Aware Expert Initialization</h4>
+          <p>
+            Each expert is initialized to capture the principal subspace of its corresponding cluster, preserving pretrained knowledge within the assigned semantic region while promoting diversity across experts.
+          </p>
+          <h4>Step 3: Router Initialization with Cluster Centroids</h4>
+          <p>
+            The router weights are set to the cluster centroids, ensuring that early routing decisions align with the data's semantic structure rather than random routing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Expert-Ensemble Self-Distillation ===== -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Expert-Ensemble Self-Distillation</h2>
+    <div class="has-text-centered" style="margin:1rem 0 1.5rem;">
+      <img src="assets/eesd-1.png" alt="EESD loss" style="max-width:400px;width:100%;height:auto;">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            Tokens with near-uniform routing probabilities indicate weak alignment between input and experts, making it difficult to preserve and reinforce consistent specialization.
+            The Expert-Ensemble Self-Distillation (EESD) loss addresses this using a dense EMA ensemble teacher that activates all experts simultaneously, providing stable supervision for the sparse MoE model.
+            This provides stronger guidance when routing is uncertain, while remaining small for confident tokens.
+            EESD introduces only modest overhead in our experiments: ~5.3% in wall-clock time and ~2.8% in GPU memory.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Results: Zero-Shot ===== -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Zero-Shot Results</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            Zero-shot retrieval (MSCOCO, Recall@1) and classification accuracy on CLIP ViT-B/16. Cluster-aware Upcycling achieves the best performance across most benchmarks.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="results-table" style="max-width:80%;">
+      <table>
+        <colgroup>
+          <col>
+          <col span="3" style="border-left:1px solid #ccc;">
+          <col span="7" style="border-left:1px solid #ccc;">
+          <col style="border-left:1px solid #ccc;">
+        </colgroup>
+        <thead>
+          <tr>
+            <th rowspan="2">Method</th>
+            <th colspan="3">MSCOCO</th>
+            <th colspan="7">ImageNet-1k</th>
+            <th rowspan="2">VTAB<br>Nat.</th>
+          </tr>
+          <tr>
+            <th>I&#8594;T</th><th>T&#8594;I</th><th>Avg.</th>
+            <th>Val</th><th>V2</th><th>A</th><th>R</th><th>Sketch</th><th>ObjNet</th><th>Avg.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Dense</td><td>34.3</td><td>50.8</td><td>42.6</td><td>62.5</td><td>54.4</td><td>23.5</td><td>70.6</td><td>45.8</td><td>42.5</td><td>49.9</td><td>62.6</td></tr>
+          <tr><td>Drop-Upcycling</td><td>34.1</td><td>51.3</td><td>42.7</td><td>62.0</td><td>54.5</td><td>22.7</td><td>70.8</td><td>45.7</td><td>42.9</td><td>49.8</td><td>60.9</td></tr>
+          <tr><td>Sparse Upcycling</td><td>34.9</td><td>50.9</td><td>42.9</td><td>63.0</td><td class="best">55.1</td><td>23.7</td><td>71.2</td><td>46.3</td><td>42.3</td><td>50.3</td><td>62.0</td></tr>
+          <tr><td>CLIP-MoE</td><td>34.0</td><td>51.5</td><td>42.8</td><td>62.9</td><td>54.9</td><td class="best">24.5</td><td>71.6</td><td>46.2</td><td>43.4</td><td>50.6</td><td>62.8</td></tr>
+          <tr class="ours"><td><strong>Cluster-aware Upcycling (Ours)</strong></td><td class="best"><strong>35.4</strong></td><td class="best"><strong>51.6</strong></td><td class="best"><strong>43.5</strong></td><td class="best"><strong>63.2</strong></td><td class="best"><strong>55.1</strong></td><td>24.1</td><td class="best"><strong>72.1</strong></td><td class="best"><strong>46.8</strong></td><td class="best"><strong>43.5</strong></td><td class="best"><strong>50.8</strong></td><td class="best"><strong>63.3</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Results: Few-Shot ===== -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Few-Shot &amp; Fine-Tuning Results</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            ImageNet-1k few-shot and full fine-tuning accuracy on the upcycled ViT-B/16. Improvements are most pronounced in few-shot regimes, where initialization quality is critical due to limited training signals.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="results-table" style="max-width:700px;">
+      <table>
+        <thead>
+          <tr><th>Method</th><th>5-shot</th><th>10-shot</th><th>Full FT</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Dense</td><td>50.4</td><td>57.1</td><td>72.8</td></tr>
+          <tr><td>Sparse Upcycling</td><td>50.9</td><td>57.8</td><td>73.0</td></tr>
+          <tr><td>Drop-Upcycling</td><td>51.1</td><td>57.9</td><td>73.1</td></tr>
+          <tr><td>CLIP-MoE</td><td>51.3</td><td>58.0</td><td>73.2</td></tr>
+          <tr class="ours"><td><strong>Cluster-aware Upcycling (Ours)</strong></td><td class="best"><strong>51.5</strong></td><td class="best"><strong>58.2</strong></td><td class="best"><strong>73.3</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Ablation ===== -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Ablation Study</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            Cluster-aware initialization and EESD play complementary roles. EESD alone shows modest gains, but combined with cluster-aware initialization it yields further improvements across all benchmarks.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="results-table center-first" style="max-width:700px;">
+      <table>
+        <thead>
+          <tr><th>Cluster-init.</th><th>EESD</th><th>MSCOCO I&#8594;T</th><th>MSCOCO T&#8594;I</th><th>IN Val</th><th>IN 10-shot</th></tr>
+        </thead>
+        <tbody>
+          <tr><td></td><td></td><td>34.9</td><td>50.9</td><td>63.0</td><td>57.8</td></tr>
+          <tr><td>&#10003;</td><td></td><td>35.1</td><td>51.1</td><td class="best"><strong>63.2</strong></td><td>58.1</td></tr>
+          <tr><td></td><td>&#10003;</td><td>34.6</td><td>51.4</td><td>62.7</td><td>57.8</td></tr>
+          <tr class="ours"><td>&#10003;</td><td>&#10003;</td><td class="best"><strong>35.4</strong></td><td class="best"><strong>51.6</strong></td><td class="best"><strong>63.2</strong></td><td class="best"><strong>58.2</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Analysis ===== -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Analysis</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            We analyze how Cluster-aware Upcycling influences expert specialization across four dimensions, quantitatively confirming that our method mitigates expert symmetry and redundancy.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item">
+        <img src="assets/analysis_rc.png" alt="Relative Compactness">
+        <p><strong>(a) Relative Compactness.</strong> Measures overlap between intra- and inter-expert variance. Lower values indicate more disentangled, geometrically independent expert subspaces.</p>
+      </div>
+      <div class="analysis-item">
+        <img src="assets/analysis_expert_similarity.png" alt="Expert Similarity">
+        <p><strong>(b) Expert Similarity.</strong> Pairwise cosine similarity between expert weights. Cluster-aware Upcycling maintains significantly higher parameter diversity across experts.</p>
+      </div>
+      <div class="analysis-item">
+        <img src="assets/analysis_routing_entropy.png" alt="Routing Entropy">
+        <p><strong>(c) Routing Entropy.</strong> Our model starts with low entropy, increases during training as load-balancing encourages exploration, and stabilizes at a lower level than baselines.</p>
+      </div>
+      <div class="analysis-item">
+        <img src="assets/analysis_utilization.png" alt="Expert Utilization">
+        <p><strong>(d) Expert Utilization.</strong> Balanced and stable utilization across all experts without routing collapse, confirming structured specialization without imbalance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BibTeX ===== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-widescreen content">
+    <h2 class="title is-3">BibTeX</h2>
+    <pre><code style="color:#888;">Coming soon.</code></pre>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>This website template is borrowed from <a href="https://nerfies.github.io">Nerfies</a>.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

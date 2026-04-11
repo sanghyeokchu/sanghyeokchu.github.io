@@ -16,7 +16,7 @@
   venue_class: top-tier
   year: 2026
   pdf_url: "#"
-  project_url: "#"
+  project_url: https://sanghyeokchu.github.io/cluster-aware-upcycling/
   code_url: "#"
 
 - title: "Beyond the Ground Truth: Enhanced Supervision for Image Restoration"
