@@ -22,7 +22,8 @@
     .author-row { display: block; margin-bottom: 2px; }
     .teaser .hero-body { padding-top: 0; padding-bottom: 3rem; }
     .teaser { font-family: 'Google Sans', sans-serif; }
-    .link-block a { margin-top: 5px; margin-bottom: 5px; }
+    .link-block { vertical-align: middle; }
+    .link-block a, .link-block > span { margin-top: 5px; margin-bottom: 5px; }
 
     .content h4 { margin-top: 1.2rem; margin-bottom: 0.4rem; }
 
@@ -155,9 +156,9 @@
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <a class="button is-normal is-rounded is-dark" href="https://arxiv.org/abs/2604.13508" target="_blank">
+                <span class="button is-normal is-rounded is-dark" style="opacity:0.55;cursor:not-allowed;" title="Coming soon">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
-                </a>
+                </span>
               </span>
               <span class="link-block">
                 <a class="button is-normal is-rounded is-dark" href="https://arxiv.org/abs/2604.13508" target="_blank">
