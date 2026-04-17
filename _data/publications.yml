@@ -15,7 +15,8 @@
   venue: CVPR 2026
   venue_class: top-tier
   year: 2026
-  pdf_url: "#"
+  url: https://arxiv.org/abs/2604.13508
+  pdf_url: https://arxiv.org/abs/2604.13508
   project_url: https://sanghyeokchu.github.io/cluster-aware-upcycling/
   code_url: "#"
 
@@ -30,14 +31,15 @@
   code_url: https://github.com/dhryougit/Beyond-the-Ground-Truth
   pdf_url: https://arxiv.org/abs/2512.03932
 
-- title: "Fine-Grained Video Captioning through Scene Graph Consolidation"
+- title: "Fine-Grained Captioning of Long Videos through Scene Graph Consolidation"
   # authors_linked: "<strong>Sanghyeok Chu</strong>, <a href='https://seoseong.uk/' target='_blank'>Seonguk Seo</a>, and <a href='https://cv.snu.ac.kr/index.php/~bhhan/' target='_blank'>Bohyung Han</a>"
   authors: "<strong>Sanghyeok Chu</strong>, Seonguk Seo, and Bohyung Han"
   venue: ICML 2025
   venue_class: top-tier
   year: 2025
-  url: https://arxiv.org/abs/2502.16427
-  pdf_url: https://arxiv.org/abs/2502.16427
+  url: https://openreview.net/pdf?id=aTC2euLwnh
+  project_url: https://sanghyeokchu.github.io/sgvc/
+  pdf_url: https://openreview.net/pdf?id=aTC2euLwnh
   code_url: "#"
 
 - title: "Pooling Revisited: Your Receptive Field is Suboptimal"
