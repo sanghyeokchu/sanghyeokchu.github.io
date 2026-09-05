@@ -2,3 +2,8 @@ title: Sanghyeok Chu
 url: https://sanghyeokchu.github.io
 baseurl: ""
 markdown: kramdown
+
+# Local-only sources and scratch files must not be copied into the generated site.
+exclude:
+  - CV
+  - tmp

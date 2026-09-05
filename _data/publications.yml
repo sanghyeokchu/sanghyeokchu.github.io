@@ -11,8 +11,8 @@
 - title: "Pri4R: Learning World Dynamics for Vision-Language-Action Models with Privileged 4D Representation"
   # authors_linked: "Jisoo Kim*, Jungbin Cho*, <strong>Sanghyeok Chu</strong>, Ananya Bal, Jinhyung Kim, Gunhee Lee, Sihaeng Lee, Seung Hwan Kim, <a href='https://cv.snu.ac.kr/index.php/~bhhan/' target='_blank'>Bohyung Han</a>, Hyunmin Lee, Laszlo A. Jeni, Seungryong Kim"
   authors: "Jisoo Kim*, Jungbin Cho*, <strong>Sanghyeok Chu</strong>, Ananya Bal, Jinhyung Kim, Gunhee Lee, Sihaeng Lee, Seung Hwan Kim, Bohyung Han, Hyunmin Lee, Laszlo A. Jeni, Seungryong Kim"
-  venue: "arXiv, 2026"
-  venue_class: under-review
+  venue: CoRL 2026
+  venue_class: top-tier
   year: 2026
   url: https://arxiv.org/abs/2603.01549
   project_url: https://jiiiisoo.github.io/Pri4R/
