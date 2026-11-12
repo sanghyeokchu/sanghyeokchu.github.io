@@ -2,448 +2,218 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Interference-Aware DeltaNet for Streaming Data">
-  <meta name="keywords" content="Linear Attention, DeltaNet, Streaming Video, Recurrent Memory, VideoLLM">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Interference-Aware DeltaNet</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
-  <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true,
-        macros: {
-          bm: ['\\boldsymbol{#1}', 1]
-        }
-      },
-      svg: { fontCache: 'global' }
-    };
-  </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-
-  <style>
-    body { font-family: 'Noto Sans', sans-serif; }
-    .publication-title { font-family: 'Google Sans', sans-serif; }
-    .publication-authors { font-family: 'Google Sans', sans-serif; }
-    .publication-authors a { color: hsl(204, 86%, 53%) !important; }
-    .publication-authors a:hover { text-decoration: underline; }
-    .author-block { display: inline-block; }
-    .author-row { display: block; margin-bottom: 2px; }
-    .teaser .hero-body { padding-top: 0; padding-bottom: 3rem; }
-    .teaser { font-family: 'Google Sans', sans-serif; }
-    .link-block { vertical-align: middle; }
-    .link-block a, .link-block > span { margin-top: 5px; margin-bottom: 5px; }
-
-    .content h4 { margin-top: 1.2rem; margin-bottom: 0.4rem; }
-
-    .results-table {
-      width: 100%;
-      overflow-x: auto;
-      margin: 0 auto;
-    }
-    .results-table table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      margin: 0 auto;
-      border-top: 2px solid #363636;
-      border-bottom: 2px solid #363636;
-    }
-    .results-table table th {
-      border-bottom: 1px solid #999;
-      padding: 10px 8px;
-      text-align: center !important;
-      font-size: 0.8rem;
-      font-weight: 600;
-      vertical-align: bottom;
-    }
-    .results-table table td {
-      padding: 7px 8px;
-      text-align: center !important;
-      font-variant-numeric: tabular-nums;
-    }
-    .results-table table th:first-child,
-    .results-table table td:first-child {
-      text-align: left !important;
-      padding-left: 12px;
-    }
-    .results-table tbody tr:hover { background-color: #fafafa; }
-    .results-table .best { font-weight: 700; }
-    .results-table .ours { background-color: #eef4ff; }
-    .results-table .ours:hover { background-color: #e4edff; }
-    .results-table .group-sep td {
-      background-color: #fafafa;
-      font-weight: 600;
-      padding: 6px 12px;
-      border-bottom: 1px solid #dbdbdb;
-    }
-    .results-table .ref-row td {
-      color: #555;
-      border-top: 1px dashed #bbb;
-    }
-
-    .analysis-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      max-width: 90%;
-      margin: 1rem auto 0;
-    }
-    .analysis-grid img { width: 100%; border-radius: 4px; }
-    .analysis-item { text-align: center; }
-    .analysis-item p {
-      font-size: 0.85rem;
-      margin-top: 6px;
-      color: #4a4a4a;
-      line-height: 1.4;
-    }
-    @media screen and (max-width: 768px) {
-      .analysis-grid { grid-template-columns: 1fr; }
-    }
-
-    .tldr-block {
-      max-width: 820px;
-      margin: 0 auto 1.5rem;
-      padding: 16px 22px;
-      background: #f5f7fb;
-      border-left: 4px solid hsl(204, 86%, 53%);
-      border-radius: 4px;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #363636;
-      text-align: left;
-    }
-    .tldr-block strong { color: hsl(204, 60%, 35%); }
-
-    .equation-block {
-      background: #fafbfc;
-      border: 1px solid #ececf2;
-      border-radius: 4px;
-      padding: 14px 18px;
-      margin: 1rem auto;
-      max-width: 720px;
-      text-align: center;
-      font-size: 1.02rem;
-      overflow-x: auto;
-    }
-  </style>
+  <meta name="description" content="Interference-Aware DeltaNet (IA-DeltaNet) reduces interference with past associations in recurrent memory while preserving the current-key correction of DeltaNet.">
+  <meta name="keywords" content="IA-DeltaNet, DeltaNet, linear attention, recurrent memory, associative recall, streaming video">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="IA-DeltaNet — Interference-Aware DeltaNet for Streaming Data">
+  <meta property="og:description" content="An interference-aware write rule for recurrent memory. arXiv preprint coming soon.">
+  <title>IA-DeltaNet — Interference-Aware DeltaNet for Streaming Data</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700%7CNoto+Sans:400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#abstract">Skip to content</a>
+  <header id="top" class="publication-header container">
+    <h1>Interference-Aware DeltaNet<br class="desktop-break"> for Streaming Data</h1>
+    <p class="publication-status">arXiv preprint <span>(coming soon)</span></p>
 
-<!-- ===== Hero ===== -->
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-widescreen">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
+    <div class="publication-authors">
+      <div class="author-row">
+        <span><a href="https://sanghyeokchu.github.io/">Sanghyeok Chu</a><sup>1</sup>,</span>
+        <span>Pyunghwan Ahn<sup>†2</sup>,</span>
+        <span>Gwangmo Song<sup>2</sup>,</span>
+        <span>Seung Hwan Kim<sup>2</sup>,</span>
+      </div>
+      <div class="author-row">
+        <span><a href="https://web.eecs.umich.edu/~honglak/">Honglak Lee</a><sup>2,3</sup>,</span>
+        <span><a href="https://cv.snu.ac.kr/index.php/~bhhan/">Bohyung Han</a><sup>†1,4</sup></span>
+      </div>
+    </div>
+    <p class="affiliations">
+      <span><sup>1</sup>ECE &amp; <sup>4</sup>IPAI, Seoul National University</span>
+      <span><sup>2</sup>LG AI Research</span>
+      <span><sup>3</sup>University of Michigan</span>
+    </p>
+    <p class="author-note">† Corresponding authors</p>
 
-          <h1 class="title is-1 publication-title">
-            Interference-Aware DeltaNet<br>for Streaming Data
-          </h1>
+    <!-- Replace these disabled buttons with links when the resources are released. -->
+    <div class="publication-links" aria-label="Project resources">
+      <button class="resource-button" type="button" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>
+        Paper <span class="resource-note">Coming soon</span>
+      </button>
+      <button class="resource-button" type="button" disabled>
+        <span class="arxiv-icon" aria-hidden="true">aχ</span>
+        arXiv <span class="resource-note">Coming soon</span>
+      </button>
+      <button class="resource-button" type="button" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></svg>
+        Code <span class="resource-note">Coming soon</span>
+      </button>
+    </div>
+    <nav class="section-links" aria-label="Page sections">
+      <a href="#abstract">Abstract</a><a href="#method">Formulation</a><a href="#results">Results</a><a href="#analysis">Analysis</a>
+    </nav>
+  </header>
 
-          <div class="is-size-3 publication-authors" style="margin-top:-15px;margin-bottom:10px;font-weight:bold;">
-            <span class="author-block">Under Review, 2026</span>
+  <main>
+    <section class="teaser container" aria-label="Overview">
+      <div class="tldr-block prose">
+        <strong>Key Idea:</strong> We define <strong>interference</strong> as the total squared change to past-key responses, then derive a <strong>closed-form write direction</strong> that minimizes a regularized interference objective while preserving DeltaNet’s current-key correction.
+      </div>
+    </section>
+
+    <section id="abstract" class="section container">
+      <div class="prose">
+        <h2>Abstract</h2>
+        <p>Transformers excel at sequence modeling through attention, but their quadratic compute and growing key-value cache make them costly for long-range streaming tasks. Linear attention variants, such as DeltaNet, address this by reformulating attention as a recurrent memory equipped with an error-corrective update rule. However, we show that DeltaNet’s update rule induces unintended interference on past-key responses, as the correction signal leaks into every past key that is not orthogonal to the current one.</p>
+        <p>We propose <strong>Interference-Aware DeltaNet (IA-DeltaNet)</strong>, which generalizes the delta rule by decoupling the key used for error evaluation from the direction along which the memory is updated. We formulate the choice of write direction as a constrained quadratic program that minimizes the total squared interference on past-key responses while exactly preserving DeltaNet’s current-key correction, and derive its closed-form solution as a preconditioned key obtained from the inverse uncentered covariance of past keys. To ensure scalability, we introduce a diagonal approximation of the past-key covariance, preserving the per-step efficiency and chunk-parallelizability of the original architecture.</p>
+        <p>On multi-query associative recall, interference-aware writing improves retention under high associative load. It also improves over recurrent-memory baselines as a bounded memory in a streaming VideoLLM, and substantially mitigates DeltaNet’s degradation under prolonged recurrent-state propagation in language modeling. These results indicate that explicitly accounting for past-key geometry offers an effective design principle for associative memory in linear-attention architectures.</p>
+      </div>
+    </section>
+
+    <section id="method" class="section">
+      <div class="container">
+        <h2>Interference-Aware Memory Writing</h2>
+        <div class="prose formulation">
+          <p>IA-DeltaNet changes the direction of a memory write to disturb past associations less, while keeping the same correction at the current key.</p>
+
+          <h3 id="interference-definition">Interference</h3>
+          <p>A write along <b>w</b> disturbs past responses according to its overlap with previous keys <b>k</b><sub>j</sub>. We measure this with a regularized sum of squared overlaps:</p>
+          <div class="equation" tabindex="0">
+            <math display="block" aria-label="Regularized interference is the sum of squared overlaps with past keys plus the squared write-direction norm, equal to w transpose Sigma t minus 1 w."><mrow><mrow><mrow><msub><mi>ℐ</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi mathvariant="bold">w</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><munder><mo>∑</mo><mrow><mi>j</mi><mo>&lt;</mo><mi>t</mi></mrow></munder><msup><mrow><mo stretchy="false">(</mo><msup><mi mathvariant="bold">w</mi><mo>⊤</mo></msup><msub><mi mathvariant="bold">k</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow><mo>+</mo><msup><mrow><mo>‖</mo><mi mathvariant="bold">w</mi><mo>‖</mo></mrow><mn>2</mn></msup></mrow><mrow><mo>=</mo><mrow><msup><mi mathvariant="bold">w</mi><mo>⊤</mo></msup><msub><mi mathvariant="bold">Σ</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mi mathvariant="bold">w</mi></mrow></mrow></mrow></math>
+          </div>
+          <p class="equation-note">Σ<sub>t−1</sub> is the accumulated uncentered covariance of past keys, initialized with the identity matrix for stability.</p>
+
+          <h3 id="correction-constraint">Constrained optimization</h3>
+          <p>Choose the write direction with the least interference, subject to preserving DeltaNet’s correction at the current unit-norm key <b>k</b><sub>t</sub>:</p>
+          <div class="equation" tabindex="0">
+            <math display="block" aria-label="Choose u t to minimize the interference objective, subject to w transpose k t equals one."><mrow><mrow><msub><mi mathvariant="bold">u</mi><mi>t</mi></msub><mo>=</mo><munder><mo>arg min</mo><mi mathvariant="bold">w</mi></munder><msub><mi>ℐ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi mathvariant="bold">w</mi><mo stretchy="false">)</mo></mrow><mspace width="1.5em" /><mrow><mtext>subject to</mtext><mspace width="1em" /><msup><mi mathvariant="bold">w</mi><mo>⊤</mo></msup><msub><mi mathvariant="bold">k</mi><mi>t</mi></msub><mo>=</mo><mn>1</mn></mrow></mrow></math>
           </div>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-row">
-              <span class="author-block"><a href="https://sanghyeokchu.github.io/">Sanghyeok Chu</a><sup>*1</sup>,</span>
-              <span class="author-block">Pyunghwan Ahn<sup>&dagger;2</sup>,</span>
-              <span class="author-block">Gwangmo Song<sup>2</sup>,</span>
-              <span class="author-block">Seung Hwan Kim<sup>2</sup>,</span>
-            </span>
-            <span class="author-row">
-              <span class="author-block"><a href="https://web.eecs.umich.edu/~honglak/">Honglak Lee</a><sup>2,3</sup>,</span>
-              <span class="author-block"><a href="https://cv.snu.ac.kr/index.php/~bhhan/">Bohyung Han</a><sup>&dagger;1,4</sup></span>
-            </span>
+          <h3 id="closed-form">Closed-form solution</h3>
+          <div id="closed-form-solution" class="equation" tabindex="0">
+            <math display="block" aria-label="Closed-form interference-aware write direction: inverse covariance times the key, divided by k transpose inverse covariance k."><mrow><msub><mi mathvariant="bold">u</mi><mi>t</mi></msub><mo>=</mo><mfrac><mrow><msubsup><mi mathvariant="bold">Σ</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msubsup><msub><mi mathvariant="bold">k</mi><mi>t</mi></msub></mrow><mrow><msubsup><mi mathvariant="bold">k</mi><mi>t</mi><mo>⊤</mo></msubsup><msubsup><mi mathvariant="bold">Σ</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msubsup><msub><mi mathvariant="bold">k</mi><mi>t</mi></msub></mrow></mfrac></mrow></math>
           </div>
-
-          <div class="is-size-5 publication-authors" style="margin-top:4px;">
-            <span class="author-block"><sup>1</sup>ECE &amp; <sup>4</sup>IPAI, Seoul National University&ensp;</span>
-            <span class="author-block"><sup>2</sup>LG AI Research&ensp;</span>
-            <span class="author-block"><sup>3</sup>University of Michigan</span>
-          </div>
-          <div class="is-size-6 publication-authors" style="margin-top:2px;">
-            <span class="author-block">* Work done during an internship at LG AI Research&ensp;&ensp;&dagger; Corresponding authors</span>
-          </div>
-
-          <!-- Links -->
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <span class="button is-normal is-rounded is-dark" style="opacity:0.55;cursor:not-allowed;" title="Coming soon">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
-                </span>
-              </span>
-              <span class="link-block">
-                <span class="button is-normal is-rounded is-dark" style="opacity:0.55;cursor:not-allowed;" title="Coming soon">
-                  <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
-                </span>
-              </span>
-              <span class="link-block">
-                <span class="button is-normal is-rounded is-dark" style="opacity:0.55;cursor:not-allowed;" title="Coming soon">
-                  <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
-                </span>
-              </span>
-            </div>
-          </div>
-
+          <p>The inverse covariance downweights directions already occupied by past keys. The denominator normalizes the write direction so that the current-key correction stays unchanged.</p>
+          <p class="equation-note">In practice, a diagonal covariance approximation retains DeltaNet’s per-step efficiency and chunk-parallel computation.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ===== Teaser ===== -->
-<section class="hero teaser" style="margin-top:-20px;">
-  <div class="container is-max-widescreen">
-    <div class="tldr-block">
-      <strong>Key Idea:</strong> DeltaNet's delta-rule update writes the correction along the current key, which inevitably leaks into past keys that overlap with it. We <strong>decouple the read address from the write direction</strong> and derive a closed-form interference-aware direction&mdash;preconditioning the current key by the inverse covariance of past keys&mdash;that minimizes total past-key disturbance while preserving DeltaNet's exact current-key correction.
-    </div>
-    <div class="has-text-centered">
-      <img src="assets/figure_vnbench_sweep.png" alt="VNBench sweep" style="width:80%;height:auto;">
-      <p class="is-size-7" style="margin-top:6px;color:#666;">VNBench accuracy across the visible-window size $W$. IA-DeltaNet consistently leads bounded-memory baselines and narrows the gap to full attention.</p>
-    </div>
-  </div>
-</section>
+    <section id="results" class="section container">
+      <h2>Associative Recall</h2>
+      <div class="prose">
+        <p>On multi-query associative recall (MQAR), the benefit grows as more key–value associations must fit into the recurrent state. At the highest evaluated load for width 128, IA-DeltaNet improves mean accuracy from <strong>81.7% to 95.5%</strong>; the exact variant reaches <strong>97.5%</strong>.</p>
+      </div>
+      <div class="results-table" role="region" aria-label="MQAR results, horizontally scrollable" tabindex="0">
+        <table>
+          <caption>MQAR accuracy (%), mean ± standard deviation over three seeds. Sequence length <i>L</i> = 8<i>K</i>.</caption>
+          <thead><tr><th scope="col">Width</th><th scope="col">Pairs <i>K</i></th><th scope="col">DeltaNet</th><th scope="col">Gated DeltaNet</th><th scope="col">OSDN</th><th scope="col">PDN</th><th scope="col" class="ours-cell">IA-DeltaNet</th><th scope="col" class="ours-cell">IA-DeltaNet†</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">64</th><td>32</td><td>99.1 <small>±0.1</small></td><td>96.6 <small>±3.2</small></td><td><strong>99.2</strong> <small>±0.1</small></td><td><strong>99.2</strong> <small>±0.2</small></td><td class="ours-cell">99.1 <small>±0.2</small></td><td class="ours-cell"><strong>99.2</strong> <small>±0.1</small></td></tr>
+            <tr><th scope="row">64</th><td>64</td><td>94.2 <small>±2.0</small></td><td>92.6 <small>±8.0</small></td><td>93.4 <small>±5.1</small></td><td>85.4 <small>±21.7</small></td><td class="ours-cell">95.1 <small>±0.9</small></td><td class="ours-cell"><strong>98.2</strong> <small>±0.5</small></td></tr>
+            <tr><th scope="row">64</th><td>128</td><td>50.7 <small>±23.8</small></td><td>26.2 <small>±23.3</small></td><td>54.3 <small>±6.1</small></td><td>58.3 <small>±12.6</small></td><td class="ours-cell">64.0 <small>±0.5</small></td><td class="ours-cell"><strong>70.0</strong> <small>±5.7</small></td></tr>
+            <tr class="group-start"><th scope="row">128</th><td>64</td><td>99.3 <small>±0.2</small></td><td>66.2 <small>±57.3</small></td><td>99.3 <small>±0.2</small></td><td>99.1 <small>±0.1</small></td><td class="ours-cell">99.2 <small>±0.1</small></td><td class="ours-cell"><strong>99.4</strong> <small>±0.3</small></td></tr>
+            <tr><th scope="row">128</th><td>128</td><td>99.1 <small>±0.1</small></td><td>32.8 <small>±56.8</small></td><td>99.2 <small>±0.1</small></td><td>98.7 <small>±0.5</small></td><td class="ours-cell">99.1 <small>±0.1</small></td><td class="ours-cell"><strong>99.6</strong> <small>±0.2</small></td></tr>
+            <tr><th scope="row">128</th><td>256</td><td>81.7 <small>±14.9</small></td><td>0.0 <small>±0.0</small></td><td>54.8 <small>±19.2</small></td><td>94.3 <small>±2.4</small></td><td class="ours-cell">95.5 <small>±1.1</small></td><td class="ours-cell"><strong>97.5</strong> <small>±2.0</small></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">† Exact IA-DeltaNet uses the full past-key covariance. Unmarked IA-DeltaNet uses the diagonal approximation throughout this page. Bold indicates the highest mean in each setting.</p>
 
-<!-- ===== Abstract ===== -->
-<section class="section">
-  <div class="container is-max-widescreen">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Transformers excel at sequence modeling through attention, but their quadratic compute and growing key-value cache make them costly for long-range streaming tasks. Linear attention variants, such as DeltaNet, address this by reformulating attention as a recurrent memory equipped with an error-corrective update rule. However, we show that DeltaNet's update rule induces unintended interference on past-key responses, as the correction signal leaks into every past key that is not orthogonal to the current one.
-          </p>
-          <p>
-            We propose <strong>Interference-Aware DeltaNet (IA-DeltaNet)</strong>, which generalizes the delta rule by decoupling the key used for error evaluation from the direction along which the memory is updated. We formulate the choice of write direction as a constrained quadratic program that minimizes the total squared interference on past-key responses while exactly preserving DeltaNet's current-key correction, and derive its closed-form solution as a preconditioned key obtained from the inverse uncentered covariance of past keys. To ensure scalability, we further introduce a diagonal approximation of the past-key covariance, preserving the per-step efficiency and chunk-parallelizability of the original architecture.
-          </p>
-          <p>
-            When integrated as a memory module in a VideoLLM, IA-DeltaNet consistently outperforms baselines on streaming video understanding under equivalent bounded memory budgets, with further analyses offering insights into its memory dynamics and computational efficiency. Collectively, these results indicate that explicitly accounting for past-key geometry is essential for designing associative memory in linear-attention architectures.
-          </p>
+      <h3 class="subsection-title">Recall from streaming video</h3>
+      <div class="prose"><p>In VNBench, the memory processes the entire visual stream, while the LLM sees only the last <i>W</i> frame readouts. IA-DeltaNet outperforms DeltaNet and Gated DeltaNet at every evaluated window size, and comes within <strong>3.5 points</strong> of the full-KV attention reference at <i>W</i> = 32.</p></div>
+      <figure class="wide-figure">
+        <a href="assets/vnbench.png" target="_blank" rel="noopener" aria-label="Open the VNBench figure at full size"><img src="assets/vnbench.png" width="1557" height="516" loading="lazy" alt="VNBench accuracy for IA-DeltaNet rises from 17.5% at 2 visible frames to 43.8% at 32, exceeding DeltaNet and Gated DeltaNet at each tested window size."></a>
+        <figcaption>VNBench accuracy across LLM-visible windows. Dashed lines denote attention with all past keys and values.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section section-tinted" id="language-modeling">
+      <div class="container">
+        <h2>Long-Document Language Modeling</h2>
+        <div class="text-figure-layout">
+          <div>
+            <p>We train on a <strong>2K-token context</strong> and evaluate on PG-19 documents of up to <strong>128K tokens</strong>, carrying recurrent states across consecutive chunks within each document.</p>
+            <p>DeltaNet and IA-DeltaNet start with similar perplexity, but diverge as the state is propagated. At 64–128K tokens, perplexity reaches <strong>90.84</strong> for DeltaNet and <strong>25.51</strong> for IA-DeltaNet.</p>
+            <p>Gated DeltaNet remains the most stable on this task. Forgetting and interference-aware writing address different parts of the update and can be combined.</p>
+          </div>
+          <figure>
+            <a href="assets/pg19.png" target="_blank" rel="noopener" aria-label="Open the PG-19 figure at full size"><img src="assets/pg19.png" width="499" height="412" loading="lazy" alt="PG-19 perplexity: DeltaNet rises sharply over long documents, IA-DeltaNet increases modestly, and Gated DeltaNet remains lowest."></a>
+            <figcaption>PG-19 with document-level state carry. Lower perplexity is better.</figcaption>
+          </figure>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ===== Problem ===== -->
-<section class="section" style="padding-top:0;">
-  <div class="container is-max-widescreen">
-    <h2 class="title is-3 has-text-centered">Past-Key Interference in DeltaNet</h2>
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <p>
-            DeltaNet replaces additive accumulation with an error-corrective rank-one update,
-          </p>
-          <div class="equation-block">
-            \[\bm{S}_t = \bm{S}_{t-1} - \beta_t\,\bm{e}_t\,\bm{k}_t^\top, \qquad \bm{e}_t = \bm{S}_{t-1}\bm{k}_t - \bm{v}_t.\]
-          </div>
-          <p>
-            By writing the correction along $\bm{k}_t$, DeltaNet successfully steers the response at the current key toward $\bm{v}_t$. But applying the same update to a past key $\bm{k}_j$ ($j<t$) yields
-          </p>
-          <div class="equation-block">
-            \[\bm{S}_t \bm{k}_j = \bm{S}_{t-1}\bm{k}_j - \beta_t\,\bm{e}_t\,(\bm{k}_t^\top\bm{k}_j),\]
-          </div>
-          <p>
-            so the correction signal leaks into <em>every</em> past key that is not orthogonal to $\bm{k}_t$. In a $d_k$-dimensional space at most $d_k$ directions can be mutually orthogonal, so as the stream progresses, this interference accumulates and degrades stored associations. The root cause is that $\bm{k}_t$ plays two conflicting roles simultaneously: <strong>read address</strong> for evaluating prediction error and <strong>write direction</strong> for updating memory.
-          </p>
+    <section class="section container" id="video-qa">
+      <h2>Streaming Video Question Answering</h2>
+      <div class="prose"><p>We insert two memory blocks between the vision aligner and the LLM in Qwen3.5-4B. All fine-tuned models are trained with <i>W</i> = 8 visible frames. IA-DeltaNet achieves the best or tied-best accuracy among the evaluated fixed-size memories across these benchmarks and window sizes.</p></div>
+      <div class="window-controls" hidden>
+        <span id="window-label">LLM-visible frames</span>
+        <div class="window-buttons" role="group" aria-labelledby="window-label">
+          <button type="button" data-window="2" aria-pressed="false">2 frames</button>
+          <button type="button" data-window="4" aria-pressed="false">4 frames</button>
+          <button type="button" data-window="8" aria-pressed="true">8 frames</button>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="results-table" role="region" aria-label="Streaming video QA results, horizontally scrollable" tabindex="0">
+        <table id="video-results">
+          <caption id="video-caption">Streaming video QA accuracy (%) with the last 8 frames visible to the LLM.</caption>
+          <thead><tr><th scope="col">Model</th><th scope="col">Memory</th><th scope="col">TempCompass</th><th scope="col">NExT-QA</th><th scope="col">MVBench</th><th scope="col">TemporalBench</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Qwen3.5-4B</th><td>None</td><td>66.3</td><td>72.7</td><td>58.7</td><td>58.0</td></tr>
+            <tr><th scope="row">+ Identity</th><td>None</td><td>64.9</td><td>71.9</td><td>55.9</td><td>64.2</td></tr>
+            <tr class="group-start"><th scope="row">+ DeltaNet</th><td>O(1)</td><td>66.4</td><td>73.5</td><td>58.3</td><td>64.6</td></tr>
+            <tr><th scope="row">+ Gated DeltaNet</th><td>O(1)</td><td>67.5</td><td>73.6</td><td>58.1</td><td><strong>65.4</strong></td></tr>
+            <tr class="ours"><th scope="row">+ IA-DeltaNet</th><td>O(1)</td><td><strong>70.1</strong></td><td><strong>76.9</strong></td><td><strong>59.2</strong></td><td><strong>65.4</strong></td></tr>
+            <tr class="group-start reference"><th scope="row">+ Attention‡</th><td>O(N)</td><td>68.8</td><td>76.7</td><td>58.1</td><td>65.7</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Memory cost is relative to stream length <i>N</i>. Identity removes the temporal mixer. Bold indicates the best result among fixed-size memories. ‡ Attention is the full-KV reference.</p>
+      <p class="sr-only" id="results-announcement" aria-live="polite"></p>
+      <div class="prose video-mme-note"><p>On <strong>Video-MME</strong>, IA-DeltaNet achieves <strong>54.9%</strong>, compared with 53.5% for DeltaNet, 51.4% for Gated DeltaNet, and 58.4% for full-KV attention. This evaluation uses <i>W</i> = 8, 64, and 256 for short, medium, and long videos, respectively.</p></div>
+    </section>
 
-<!-- ===== Method ===== -->
-<section class="section" style="padding-top:0;">
-  <div class="container is-max-widescreen">
-    <h2 class="title is-3 has-text-centered">Interference-Aware DeltaNet</h2>
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <p>
-            IA-DeltaNet keeps $\bm{k}_t$ as the read address but introduces a separate write direction $\bm{u}_t$:
-          </p>
-          <div class="equation-block">
-            \[\bm{S}_t = \bm{S}_{t-1} - \beta_t\,\bm{e}_t\,\bm{u}_t^\top.\]
-          </div>
-
-          <h4>Constrained quadratic program.</h4>
-          <p>
-            We choose $\bm{u}_t$ to minimize total squared past-key interference while preserving the exact current-key correction of DeltaNet ($\bm{u}_t^\top\bm{k}_t = 1$):
-          </p>
-          <div class="equation-block">
-            \[\bm{u}_t = \arg\min_{\hat{\bm{u}}_t}\; \hat{\bm{u}}_t^\top \bm{\Sigma}_{t-1}\,\hat{\bm{u}}_t \quad \text{s.t.} \quad \hat{\bm{u}}_t^\top \bm{k}_t = 1,\]
-          </div>
-          <p>
-            where $\bm{\Sigma}_{t-1} = \sum_{j<t}\bm{k}_j\bm{k}_j^\top$ is the uncentered covariance of past keys. The Lagrangian admits a clean closed-form solution:
-          </p>
-          <div class="equation-block">
-            \[\bm{u}_t = \frac{\bm{\Sigma}_{t-1}^{-1}\bm{k}_t}{\bm{k}_t^\top\bm{\Sigma}_{t-1}^{-1}\bm{k}_t}.\]
-          </div>
-          <p>
-            $\bm{\Sigma}_{t-1}^{-1}$ acts as a whitening transform that downweights directions already heavily occupied by past keys, and the denominator renormalizes to satisfy the correction constraint. Under isotropic past keys ($\bm{\Sigma}_{t-1}\propto\bm{I}$) this reduces to $\bm{u}_t=\bm{k}_t$, recovering DeltaNet exactly.
-          </p>
-
-          <h4>Guaranteed interference reduction.</h4>
-          <p>
-            The matrix-form Cauchy&ndash;Schwarz inequality $(\bm{k}_t^\top\bm{\Sigma}_{t-1}\bm{k}_t)(\bm{k}_t^\top\bm{\Sigma}_{t-1}^{-1}\bm{k}_t) \geq 1$ implies $\mathcal{I}_t(\bm{u}_t) \leq \mathcal{I}_t(\bm{k}_t)$ for any past-key geometry, with equality only when $\bm{k}_t$ aligns with an eigenvector of $\bm{\Sigma}_{t-1}$.
-          </p>
-
-          <h4>Diagonal approximation for $O(d_k)$ overhead.</h4>
-          <p>
-            Maintaining a full $\bm{\Sigma}_{t-1}^{-1}$ costs $O(d_k^2)$ per step even with Sherman&ndash;Morrison updates. We approximate $\bm{\Sigma}_{t-1}\approx \operatorname{diag}(\bm{d}_{t-1})$ where $\bm{d}_t = \bm{d}_{t-1} + \bm{k}_t\odot\bm{k}_t$ is an element-wise prefix sum of squared keys. The resulting write direction
-          </p>
-          <div class="equation-block">
-            \[\bm{u}_t = \frac{\bm{D}_{t-1}^{-1}\bm{k}_t}{\bm{k}_t^\top\bm{D}_{t-1}^{-1}\bm{k}_t}\]
-          </div>
-          <p>
-            adds only $O(d_k)$ overhead per step, preserves DeltaNet's $O(d_v d_k)$ rank-one update, and remains chunk-parallelizable via associative scans because $\bm{d}_t$ is a simple prefix sum.
-          </p>
+    <section id="analysis" class="section section-tinted">
+      <div class="container">
+        <h2>Understanding the Memory Writes</h2>
+        <div class="prose"><p>Direct measurements connect the improved retention to lower write interference. The diagonal approximation closely follows the exact solution when the covariance is diagonal; rotating the covariance exposes the limits of the approximation.</p></div>
+        <div class="analysis-grid">
+          <figure>
+            <a href="assets/synthetic-keys.png" target="_blank" rel="noopener" aria-label="Open the synthetic-key interference figure at full size"><img src="assets/synthetic-keys.png" width="404" height="331" loading="lazy" alt="Under axis-aligned synthetic key covariance, diagonal and exact IA-DeltaNet have much lower interference than DeltaNet."></a>
+            <figcaption><strong>(a) Synthetic keys.</strong> With diagonal covariance, the diagonal approximation nearly matches the exact write direction.</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/rotated-keys.png" target="_blank" rel="noopener" aria-label="Open the rotated-key interference figure at full size"><img src="assets/rotated-keys.png" width="404" height="331" loading="lazy" alt="With rotated synthetic key covariance, diagonal IA-DeltaNet lies between DeltaNet and exact IA-DeltaNet in write interference."></a>
+            <figcaption><strong>(b) Rotated synthetic keys.</strong> Off-diagonal structure creates a gap between the diagonal and exact variants.</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/video-interference.png" target="_blank" rel="noopener" aria-label="Open the real-video interference figure at full size"><img src="assets/video-interference.png" width="404" height="331" loading="lazy" alt="IA-DeltaNet incurs lower write interference than DeltaNet on learned real-video keys throughout the stream."></a>
+            <figcaption><strong>(c) Real video keys.</strong> IA-DeltaNet (red) reduces interference compared with DeltaNet (blue), with a widening gap over the stream.</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/effective-rank.png" target="_blank" rel="noopener" aria-label="Open the effective-rank figure at full size"><img src="assets/effective-rank.png" width="407" height="331" loading="lazy" alt="The median effective rank is 19 for DeltaNet keys, 49 for IA-DeltaNet keys, and 100 for IA-DeltaNet write directions, out of 160 dimensions."></a>
+            <figcaption><strong>(d) Effective rank.</strong> IA-DeltaNet write directions span a broader subspace: median rank 100 out of 160 dimensions, versus 49 for its keys.</figcaption>
+          </figure>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ===== Results: Temporal & Motion ===== -->
-<section class="section">
-  <div class="container is-max-widescreen">
-    <h2 class="title is-3 has-text-centered">Streaming Video Understanding</h2>
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <p>
-            We integrate IA-DeltaNet as a fixed-size recurrent memory module on top of the Qwen3.5-4B vision aligner, processing visual tokens in temporal order. The LLM only sees readouts from the last $W$ frames; earlier frames must propagate through the recurrent state. IA-DeltaNet is the best bounded-memory model across all $W$, and the gain is largest in the small-$W$ regime where the model relies most heavily on the state.
-          </p>
-        </div>
+    <section id="citation" class="section container citation-section">
+      <div class="prose">
+        <h2>BibTeX</h2>
+        <p class="citation-placeholder">The arXiv preprint and citation will be available here upon release.</p>
       </div>
-    </div>
-    <div class="results-table" style="max-width:90%;">
-      <table>
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Memory</th>
-            <th>Cost</th>
-            <th>TempCompass</th>
-            <th>NExT-QA</th>
-            <th>MVBench</th>
-            <th>TemporalBench</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="group-sep"><td colspan="7">Last $W = 2$ frames</td></tr>
-          <tr><td>Qwen3.5-4B</td><td>No mem.</td><td>$\mathcal{O}(1)$</td><td>54.4</td><td>67.4</td><td>51.6</td><td>55.0</td></tr>
-          <tr><td>+ Identity</td><td>No mem.</td><td>$\mathcal{O}(1)$</td><td>59.5</td><td>66.4</td><td>51.9</td><td>61.4</td></tr>
-          <tr><td>+ DeltaNet</td><td>State $\bm{S}$</td><td>$\mathcal{O}(1)$</td><td>59.4</td><td>60.0</td><td class="best"><strong>55.2</strong></td><td>62.0</td></tr>
-          <tr><td>+ GatedDeltaNet</td><td>State $\bm{S}$</td><td>$\mathcal{O}(1)$</td><td>58.6</td><td>67.5</td><td>52.4</td><td>61.1</td></tr>
-          <tr class="ours"><td><strong>+ IA-DeltaNet (Ours)</strong></td><td>State $\bm{S}$</td><td>$\mathcal{O}(1)$</td><td class="best"><strong>65.4</strong></td><td class="best"><strong>71.1</strong></td><td class="best"><strong>55.2</strong></td><td class="best"><strong>63.5</strong></td></tr>
-          <tr class="ref-row"><td>+ Attention<sup>&dagger;</sup></td><td>Full KV</td><td>$\mathcal{O}(N)$</td><td>63.2</td><td>71.7</td><td>56.7</td><td>64.4</td></tr>
-
-          <tr class="group-sep"><td colspan="7">Last $W = 4$ frames</td></tr>
-          <tr><td>Qwen3.5-4B</td><td>No mem.</td><td>$\mathcal{O}(1)$</td><td>60.0</td><td>70.2</td><td>57.0</td><td>56.9</td></tr>
-          <tr><td>+ Identity</td><td>No mem.</td><td>$\mathcal{O}(1)$</td><td>62.9</td><td>69.1</td><td>54.5</td><td>63.1</td></tr>
-          <tr><td>+ DeltaNet</td><td>State $\bm{S}$</td><td>$\mathcal{O}(1)$</td><td>62.6</td><td>66.2</td><td>57.7</td><td>64.5</td></tr>
-          <tr><td>+ GatedDeltaNet</td><td>State $\bm{S}$</td><td>$\mathcal{O}(1)$</td><td>62.7</td><td>70.0</td><td>56.3</td><td>64.2</td></tr>
-          <tr class="ours"><td><strong>+ IA-DeltaNet (Ours)</strong></td><td>State $\bm{S}$</td><td>$\mathcal{O}(1)$</td><td class="best"><strong>67.7</strong></td><td class="best"><strong>75.0</strong></td><td class="best"><strong>58.4</strong></td><td class="best"><strong>64.6</strong></td></tr>
-          <tr class="ref-row"><td>+ Attention<sup>&dagger;</sup></td><td>Full KV</td><td>$\mathcal{O}(N)$</td><td>66.8</td><td>75.4</td><td>57.6</td><td>65.8</td></tr>
-
-          <tr class="group-sep"><td colspan="7">Last $W = 8$ frames</td></tr>
-          <tr><td>Qwen3.5-4B</td><td>No mem.</td><td>$\mathcal{O}(1)$</td><td>66.3</td><td>72.7</td><td>58.7</td><td>58.0</td></tr>
-          <tr><td>+ Identity</td><td>No mem.</td><td>$\mathcal{O}(1)$</td><td>64.9</td><td>71.9</td><td>55.9</td><td>64.2</td></tr>
-          <tr><td>+ DeltaNet</td><td>State $\bm{S}$</td><td>$\mathcal{O}(1)$</td><td>66.4</td><td>73.5</td><td>58.3</td><td>64.6</td></tr>
-          <tr><td>+ GatedDeltaNet</td><td>State $\bm{S}$</td><td>$\mathcal{O}(1)$</td><td>67.5</td><td>73.6</td><td>58.1</td><td class="best"><strong>65.4</strong></td></tr>
-          <tr class="ours"><td><strong>+ IA-DeltaNet (Ours)</strong></td><td>State $\bm{S}$</td><td>$\mathcal{O}(1)$</td><td class="best"><strong>70.1</strong></td><td class="best"><strong>76.9</strong></td><td class="best"><strong>59.2</strong></td><td class="best"><strong>65.4</strong></td></tr>
-          <tr class="ref-row"><td>+ Attention<sup>&dagger;</sup></td><td>Full KV</td><td>$\mathcal{O}(N)$</td><td>68.8</td><td>76.7</td><td>58.1</td><td>65.7</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="has-text-centered is-size-7" style="margin-top:8px;color:#666;">Bold marks the best among bounded-memory models. <sup>&dagger;</sup> Full-KV reference (unbounded memory).</p>
-  </div>
-</section>
-
-<!-- ===== Results: Video-MME ===== -->
-<section class="section">
-  <div class="container is-max-widescreen">
-    <h2 class="title is-3 has-text-centered">General Video QA &mdash; Video-MME</h2>
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <p>
-            On the more diverse, longer Video-MME benchmark, IA-DeltaNet again leads all fixed-state memory baselines, showing that interference-aware writes generalize beyond targeted memory or temporal-reasoning tests.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="results-table" style="max-width:520px;">
-      <table>
-        <thead>
-          <tr><th>Model</th><th>Video-MME</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Qwen3.5-4B</td><td>49.7</td></tr>
-          <tr><td>+ Identity</td><td>50.4</td></tr>
-          <tr><td>+ DeltaNet</td><td>53.5</td></tr>
-          <tr><td>+ GatedDeltaNet</td><td>51.4</td></tr>
-          <tr class="ours"><td><strong>+ IA-DeltaNet (Ours)</strong></td><td class="best"><strong>54.9</strong></td></tr>
-          <tr class="ref-row"><td>+ Attention<sup>&dagger;</sup></td><td>58.4</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Analysis ===== -->
-<section class="section">
-  <div class="container is-max-widescreen">
-    <h2 class="title is-3 has-text-centered">Analysis</h2>
-    <div class="analysis-grid">
-      <div class="analysis-item">
-        <img src="assets/fig_synthetic_interference_rotation_anisotropy_grid_5K.png" alt="Synthetic interference">
-        <p><strong>(a) Synthetic past-key interference.</strong> Across anisotropies and eigenspace rotations, even the diagonal IA-DeltaNet stays below DeltaNet&mdash;suppressing anisotropic interference outweighs diagonal approximation error.</p>
-      </div>
-      <div class="analysis-item">
-        <img src="assets/fig_C_write_medium.png" alt="Real-video interference">
-        <p><strong>(b) Interference on real video keys.</strong> On Video-MME (medium subset), IA-DeltaNet yields lower write-direction interference $\mathcal{I}_t(\bm{w})$ than DeltaNet across timesteps, mirroring the synthetic trend.</p>
-      </div>
-      <div class="analysis-item">
-        <img src="assets/fig_needle_recall_bars.png" alt="Needle recall">
-        <p><strong>(c) Needle recall (VNBench).</strong> IA-DeltaNet consistently retrieves more needle-frame information than DeltaNet/GatedDeltaNet, narrowing the gap to the unbounded-memory attention reference.</p>
-      </div>
-      <div class="analysis-item">
-        <img src="assets/fig_efficiency.png" alt="Efficiency">
-        <p><strong>(d) Efficiency.</strong> Time-to-first-token and GPU memory remain stable as the number of frames grows; IA-DeltaNet adds only marginal overhead over DeltaNet, while attention OOMs on long inputs.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== BibTeX ===== -->
-<section class="section" id="BibTeX">
-  <div class="container is-max-widescreen content">
-    <h2 class="title is-3">BibTeX</h2>
-    <pre><code style="color:#888;">Coming soon.</code></pre>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <p>This website template is borrowed from <a href="https://nerfies.github.io">Nerfies</a>.</p>
-    </div>
-  </div>
-</footer>
-
+    </section>
+  </main>
 </body>
 </html>
