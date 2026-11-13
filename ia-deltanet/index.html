@@ -10,7 +10,6 @@
   <meta property="og:title" content="IA-DeltaNet — Interference-Aware DeltaNet for Streaming Data">
   <meta property="og:description" content="An interference-aware write rule for recurrent memory. arXiv preprint coming soon.">
   <title>IA-DeltaNet — Interference-Aware DeltaNet for Streaming Data</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700%7CNoto+Sans:400,500,600,700&display=swap" rel="stylesheet">
@@ -65,7 +64,7 @@
   <main>
     <section class="teaser container" aria-label="Overview">
       <div class="tldr-block prose">
-        <strong>Key Idea:</strong> We define <strong>interference</strong> as the total squared change to past-key responses, then derive a <strong>closed-form write direction</strong> that minimizes a regularized interference objective while preserving DeltaNet’s current-key correction.
+        <strong>Key Idea:</strong> We define <strong>interference</strong> as the total squared change to past-key responses, then derive a <strong>closed-form write direction</strong> that minimizes interference while preserving DeltaNet’s current-key correction.
       </div>
     </section>
 
@@ -85,11 +84,11 @@
           <p>IA-DeltaNet changes the direction of a memory write to disturb past associations less, while keeping the same correction at the current key.</p>
 
           <h3 id="interference-definition">Interference</h3>
-          <p>A write along <b>w</b> disturbs past responses according to its overlap with previous keys <b>k</b><sub>j</sub>. We measure this with a regularized sum of squared overlaps:</p>
+          <p>A write along <b>w</b> disturbs past responses according to its overlap with previous keys <b>k</b><sub>j</sub>. We measure this as the sum of squared overlaps:</p>
           <div class="equation" tabindex="0">
-            <math display="block" aria-label="Regularized interference is the sum of squared overlaps with past keys plus the squared write-direction norm, equal to w transpose Sigma t minus 1 w."><mrow><mrow><mrow><msub><mi>ℐ</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi mathvariant="bold">w</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><munder><mo>∑</mo><mrow><mi>j</mi><mo>&lt;</mo><mi>t</mi></mrow></munder><msup><mrow><mo stretchy="false">(</mo><msup><mi mathvariant="bold">w</mi><mo>⊤</mo></msup><msub><mi mathvariant="bold">k</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow><mo>+</mo><msup><mrow><mo>‖</mo><mi mathvariant="bold">w</mi><mo>‖</mo></mrow><mn>2</mn></msup></mrow><mrow><mo>=</mo><mrow><msup><mi mathvariant="bold">w</mi><mo>⊤</mo></msup><msub><mi mathvariant="bold">Σ</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mi mathvariant="bold">w</mi></mrow></mrow></mrow></math>
+            <math display="block" aria-label="Interference is the sum of squared overlaps with past keys, equal to w transpose Sigma t minus 1 w."><mrow><mrow><mrow><msub><mi>ℐ</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi mathvariant="bold">w</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><munder><mo>∑</mo><mrow><mi>j</mi><mo>&lt;</mo><mi>t</mi></mrow></munder><msup><mrow><mo stretchy="false">(</mo><msup><mi mathvariant="bold">w</mi><mo>⊤</mo></msup><msub><mi mathvariant="bold">k</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow></mrow><mrow><mo>=</mo><mrow><msup><mi mathvariant="bold">w</mi><mo>⊤</mo></msup><msub><mi mathvariant="bold">Σ</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mi mathvariant="bold">w</mi></mrow></mrow></mrow></math>
           </div>
-          <p class="equation-note">Σ<sub>t−1</sub> is the accumulated uncentered covariance of past keys, initialized with the identity matrix for stability.</p>
+          <p class="equation-note">Σ<sub>t−1</sub> is the accumulated uncentered covariance of past keys.</p>
 
           <h3 id="correction-constraint">Constrained optimization</h3>
           <p>Choose the write direction with the least interference, subject to preserving DeltaNet’s correction at the current unit-norm key <b>k</b><sub>t</sub>:</p>
