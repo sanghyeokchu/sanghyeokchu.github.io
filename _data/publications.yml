@@ -14,9 +14,9 @@
   venue: CoRL 2026
   venue_class: top-tier
   year: 2026
-  url: https://arxiv.org/abs/2603.01549
+  url: https://openreview.net/pdf/75d01679031fb0b1c763b465639f5f073fcc36e9.pdf
   project_url: https://jiiiisoo.github.io/Pri4R/
-  pdf_url: https://arxiv.org/abs/2603.01549
+  pdf_url: https://openreview.net/pdf/75d01679031fb0b1c763b465639f5f073fcc36e9.pdf
 
 
 - title: "Enhancing Mixture-of-Experts Specialization via Cluster-Aware Upcycling"
